@@ -6,8 +6,7 @@ const calculateMonthsSince = (startDate) => {
     return months;
 }
 
-const calcMin = (tipoNomina, fechaPrimerEmpleo, genero) => {
-    const months = calculateMonthsSince(fechaPrimerEmpleo)
+const calcMin = (tipoNomina, months, genero) => {
 
     if (genero === "masculino") {
         if (months <= 26) {
@@ -126,8 +125,8 @@ const calcMin = (tipoNomina, fechaPrimerEmpleo, genero) => {
     }
 }
 
-const calcMax = (tipoNomina, fechaPrimerEmpleo, genero) => {
-    const months = calculateMonthsSince(fechaPrimerEmpleo)
+const calcMax = (tipoNomina, months, genero) => {
+
     if (genero === "masculino") {
         if (months <= 26) {
             switch (tipoNomina) {
@@ -252,8 +251,9 @@ const calculateCreditLineTime = (minAmount, maxAmount) => {
 };
 
 const calculoMotor = ( tipoNomina, fechaPrimerEmpleo, genero ) => {
-    const montoMinimo = calcMin(tipoNomina, fechaPrimerEmpleo, genero)
-    const montoMaximo = calcMax(tipoNomina, fechaPrimerEmpleo, genero)
+    const months = calculateMonthsSince(fechaPrimerEmpleo)
+    const montoMinimo = calcMin(tipoNomina, months, genero)
+    const montoMaximo = calcMax(tipoNomina, months, genero)
     const recomendacionLinea = calculateCreditLineTime( montoMinimo, montoMaximo)
 
 
